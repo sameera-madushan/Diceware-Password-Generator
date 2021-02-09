@@ -2,7 +2,7 @@
 
 **Please Note - This Program Do Not Store Passwords In Any Form And All The Passwords Are Generated Locally Inside You Device.**
 
-[Diceware](https://theworld.com/~reinhold/diceware.html) is a method used to generate cryptographically strong memorable passphrases. This is a python implementation of the diceware password generating algorithm.
+[Diceware](https://theworld.com/~reinhold/diceware.html) is a method used to generate cryptographically strong memorable passphrases. This is a python implementation of the diceware password generating algorithm. Inspired after watching [this](https://youtu.be/Pe_3cFuSw1E) video.
 
 ![DPG](https://user-images.githubusercontent.com/55880211/107419797-34a05800-6b3e-11eb-9e47-455309604168.gif)
 
