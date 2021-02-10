@@ -22,14 +22,15 @@ print('''
 while True:
     try:
         ask_user = int(input('How many word do you want in your passphrase (Recommend a minimum of six words): '))
-        if ask_user == 0:
-            print("\nSorry, Please insert a number greater than Zero.\n")
+        val = int(ask_user)
+        if val > 0:
+            break
+        else:
+            print("\nSorry, Number can't be negative(-ve) or zero(0), try again\n")
             continue
     except ValueError:
-        print("\nSorry, Please insert a number greater than Zero.\n")
+        print("\nSorry, Input must be a number, try again\n")
         continue
-    else:
-        break
 
 # From reddit user u/turkoid
 for _ in range(ask_user):
