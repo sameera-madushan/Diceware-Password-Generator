@@ -21,7 +21,7 @@ print('''
 
 while True:
     try:
-        ask_user = int(input('How many word do you want in your passphrase (Recommend a minimum of six words): '))
+        ask_user = int(input('How many words do you want in your passphrase (Recommend a minimum of six words): '))
         val = int(ask_user)
         if val > 0:
             break
