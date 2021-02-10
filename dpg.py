@@ -1,10 +1,9 @@
-import requests
-import random
-import re
+from wordlist import wordlist
+import secrets
 
-min = 1
-max = 6
-n = 5
+DICE_COUNT = 5
+dice_rolls = []
+word_list = []
 
 print('''
 
@@ -20,50 +19,33 @@ print('''
         (Diceware Password Generator by Sameera Madushan)
 ''')
 
-try:
-    ask_user = int(input('How many word do you want in your passphrase (Recommend a minimum of six words): ')) * 5
+while True:
+    try:
+        ask_user = int(input('How many word do you want in your passphrase (Recommend a minimum of six words): '))
+        if ask_user == 0:
+            print("\nSorry, Please insert a number greater than Zero.\n")
+            continue
+    except ValueError:
+        print("\nSorry, Please insert a number greater than Zero.\n")
+        continue
+    else:
+        break
 
-    def main():
+# From reddit user u/turkoid
+for _ in range(ask_user):
+    dice = ''.join(str(secrets.randbelow(6) + 1) for _ in range(DICE_COUNT))
+    dice_rolls.append(dice)
 
-        result_list = []
+for i in dice_rolls:
+    for k, v in wordlist.items():
+        if i == k:
+            word_list.append(v)
 
-        for i in range(0, ask_user):
-            x = random.randint(min, max)
+print('\n- YOUR WORDS ARE -\n')
+for i in word_list:
+    print(i, end=' ')
 
-            result_list.append(x)
+final_passphrase = " ".join(word_list).replace(" ", "")
 
-        final_list = [result_list[i * n:(i + 1) * n] for i in range((len(result_list) + n - 1) // n )]
-
-        wordlist = []
-
-        for i in final_list:
-            word = ""
-            for j in i:
-                word = word+str(j)
-            wordlist.append(word)
-
-        diceware_list_url = 'https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt'
-
-        req = requests.get(diceware_list_url).content.decode('utf-8')
-
-        words = []
-
-        for o in wordlist:
-            t = re.search(o + r'.*', req)
-            c = t.group()
-            v = re.sub(r'\s+', '', c)[5:]
-            words.append(v)
-
-        print('\n- YOUR WORDS ARE -\n')
-        for i in words:
-            print(i, end=' ')
-
-        final = " ".join(words).replace(" ", "")
-
-        print('\n\n- YOUR PASSPHRASE IS -\n')
-        print(final)
-
-    main()
-
-except(KeyboardInterrupt):
-    print("\nProgramme Interrupted")
+print('\n\n- YOUR PASSPHRASE IS -\n')
+print(final_passphrase)
